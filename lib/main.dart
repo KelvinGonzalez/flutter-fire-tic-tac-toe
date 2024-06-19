@@ -4,14 +4,22 @@ import 'package:flutter/material.dart';
 import 'model/room_manager.dart';
 import 'page/home.dart';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
+
+FirebaseOptions getOptions() {
+  const appId = kIsWeb
+      ? "1:242745106738:web:d818b100e01410ea61372b"
+      : "1:242745106738:android:584afc1b31fb66a561372b";
+  return const FirebaseOptions(
+      apiKey: "AIzaSyAgpIje1vP5gssyAcCWKg1akSeGKi4c56Y",
+      appId: appId,
+      messagingSenderId: "242745106738",
+      projectId: "tic-tac-toe-d6619");
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: "AIzaSyAgpIje1vP5gssyAcCWKg1akSeGKi4c56Y",
-          appId: "1:242745106738:android:584afc1b31fb66a561372b",
-          messagingSenderId: "242745106738",
-          projectId: "tic-tac-toe-d6619"));
+  await Firebase.initializeApp(options: getOptions());
   await RoomManager.getInstance().init();
   runApp(const MyApp());
 }

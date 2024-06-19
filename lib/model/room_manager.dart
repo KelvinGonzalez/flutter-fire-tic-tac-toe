@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:platform_device_id_v3/platform_device_id.dart';
 import 'package:tic_tac_toe/model/player.dart';
 import 'package:tic_tac_toe/model/room.dart';
 
@@ -15,9 +15,8 @@ class RoomManager {
   }
 
   Future<void> init() async {
-    // String? id = await FirebaseMessaging.instance.getToken();
-    // if (id == null) return;
-    const id = "0";
+    String? id = await PlatformDeviceId.getDeviceId;
+    if (id == null) return;
     player = Player(id: id);
   }
 

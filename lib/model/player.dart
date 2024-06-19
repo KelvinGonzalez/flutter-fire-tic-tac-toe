@@ -14,8 +14,8 @@ class Player {
 
   @override
   bool operator ==(Object other) =>
-      other.runtimeType == Player && name == (other as Player).name;
+      other.runtimeType == Player && id == (other as Player).id;
 
   @override
-  int get hashCode => name.hashCode;
+  int get hashCode => id.hashCode;
 }
